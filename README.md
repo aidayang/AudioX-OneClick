@@ -1,173 +1,41 @@
-# 🎧 AudioX: Diffusion Transformer for Anything-to-Audio Generation
+# AudioX-OneClick
 
-[![arXiv](https://img.shields.io/badge/arXiv-2503.10522-brightgreen.svg?style=flat-square)](https://arxiv.org/abs/2503.10522)
-[![Project Page](https://img.shields.io/badge/GitHub.io-Project-blue?logo=Github&style=flat-square)](https://zeyuet.github.io/AudioX/)
-[![🤗 Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue)](https://huggingface.co/HKUSTAudio/AudioX)
-[![🤗 Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue)](https://huggingface.co/spaces/Zeyue7/AudioX)
+AudioX音乐音效生成软件免安装部署一键启动整合包，下载解压即用。
 
----
+![](https://raw.githubusercontent.com/aidayang/AudioX-OneClick/refs/heads/main/audiox.jpg)
 
-**This is the official repository for "[AudioX: Diffusion Transformer for Anything-to-Audio Generation](https://arxiv.org/pdf/2503.10522)".**
+## AudioX官方介绍
+音频和音乐生成已成为众多应用中的关键任务，然而现有方法面临诸多限制：它们各自为政，缺乏跨模态的统一能力，缺乏高质量的多模态训练数据，并且难以有效地整合不同的输入。在本研究中，我们提出了 AudioX，一个用于“任何内容到音频”和“音乐”生成的统一的扩散变换器 (Diffusion Transformer) 模型。与以往的特定领域模型不同，AudioX 可以生成高质量的通用音频和音乐，同时提供灵活的自然语言控制，并无缝处理包括文本、视频、图像、音乐和音频在内的各种模态。其关键创新在于一种多模态掩蔽训练策略，该策略可以掩蔽跨模态的输入，并迫使模型从掩蔽的输入中学习，从而产生稳健且统一的跨模态表征。为了解决数据稀缺问题，我们整理了两个全面的数据集：基于 VGGSound 数据集的包含 19 万条音频字幕的 vggsound-caps，以及源自 V2M 数据集的包含 600 万条音乐字幕的 V2M-caps。大量实验表明，AudioX 不仅能与最先进的专业模型匹敌或超越它们，而且在统一架构内处理各种输入模式和生成任务方面也具有出色的多功能性。
 
+## AudioX整合包使用说明
+首先将网盘内的软件压缩包下载到本地电脑上并解压，然后双击启动软件.exe打开软件启动webui
 
-## 📺 Demo Video
+稍等片刻启动成功后会自动打开webui页面。
 
-https://github.com/user-attachments/assets/0d8dd927-ff0f-4b35-ab1f-b3c3915017be
+webui界面提供了文本合成音效和音乐，视频生成音效和音乐功能。
 
----
+首先在顶部prompt输入框中输入想要生成音频内容的英文描述词。然后点击下面的Generate按钮即可生成音频或是音乐。你可以在下方Sampler Params中设置sample size值来设置音频时长，原来软件音频只能生成10秒，这里给稍微做了下代码修改。音频时长=sample size÷sample rate。
 
+如果想给视频增加音效的话，可以在Video Path中输入视频路径或是点击下方Upload Video File上传视频文件。
 
-## ✨ Abstract
+可以输入文本描述词为视频添加指定音效，也可以让软件自动识别视频内容自动添加音效。
 
-Audio and music generation have emerged as crucial tasks in many applications, yet existing approaches face significant limitations: they operate in isolation without unified capabilities across modalities, suffer from scarce high-quality, multi-modal training data, and struggle to effectively integrate diverse inputs. In this work, we propose AudioX, a unified Diffusion Transformer model for Anything-to-Audio and Music Generation. Unlike previous domain-specific models, AudioX can generate both general audio and music with high quality, while offering flexible natural language control and seamless processing of various modalities including text, video, image, music, and audio. Its key innovation is a multi-modal masked training strategy that masks inputs across modalities and forces the model to learn from masked inputs, yielding robust and unified cross-modal representations. To address data scarcity, we curate two comprehensive datasets: vggsound-caps with 190K audio captions based on the VGGSound dataset, and V2M-caps with 6 million music captions derived from the V2M dataset. Extensive experiments demonstrate that AudioX not only matches or outperforms state-of-the-art specialized models, but also offers remarkable versatility in handling diverse input modalities and generation tasks within a unified architecture.
+视频教程及效果演示：https://www.youtube.com/watch?v=bWCYMDQAZYI
 
+## 注意事项
+软件整合包只支持英伟达30或40系列显卡电脑
 
-## ✨ Teaser
+只支持windows10或11
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/ea723225-f9c8-4ca2-8837-2c2c08189bdd" alt="method">
-</p>
-<p style="text-align: left;">(a) Overview of AudioX, illustrating its capabilities across various tasks. (b) Radar chart comparing the performance of different methods across multiple benchmarks. AudioX demonstrates superior Inception Scores (IS) across a diverse set of datasets in audio and music generation tasks.</p>
+软件运行路径中不要有非英文字符和空格，待处理文件同样要注意
 
+## 音乐音效生成软件AudioX整合包下载链接
+https://pan.quark.cn/s/1eb91866528d
 
-## ✨ Method
+https://pan.baidu.com/s/1_dccvq1RkKlrlaXGX0adlQ?pwd=cmea
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/94ea3df0-8c66-4259-b681-791ee41bada8" alt="method">
-</p>
-<p align="center">Overview of the AudioX Framework.</p>
-
-
-
-## Code
-
-
-### 🛠️ Environment Setup
-
-```bash
-git clone https://github.com/ZeyueT/AudioX.git
-cd AudioX
-conda create -n AudioX python=3.8.20
-conda activate AudioX
-pip install git+https://github.com/ZeyueT/AudioX.git
-conda install -c conda-forge ffmpeg libsndfile
-
-```
-
-## 🪄 Pretrained Checkpoints
-
-Download the pretrained model from 🤗 [AudioX on Hugging Face](https://huggingface.co/HKUSTAudio/AudioX):
-
-```bash
-mkdir -p model
-wget https://huggingface.co/HKUSTAudio/AudioX/resolve/main/model.ckpt -O model/model.ckpt
-wget https://huggingface.co/HKUSTAudio/AudioX/resolve/main/config.json -O model/config.json
-```
-
-### 🤗 Gradio Demo
-
-To launch the Gradio demo locally, run:
-
-```bash
-python3 run_gradio.py \
-    --model-config model/config.json \
-    --share
-```
-
-
-### 🎯 Prompt Configuration Examples
-
-| Task                 | `video_path`       | `text_prompt`                                 | `audio_path` |
-|:---------------------|:-------------------|:----------------------------------------------|:-------------|
-| Text-to-Audio (T2A)  | `None`             | `"Typing on a keyboard"`                      | `None`       |
-| Text-to-Music (T2M)  | `None`             | `"A music with piano and violin"`             | `None`       |
-| Video-to-Audio (V2A) | `"video_path.mp4"` | `"Generate general audio for the video"`      | `None`       |
-| Video-to-Music (V2M) | `"video_path.mp4"` | `"Generate music for the video"`              | `None`       |
-| TV-to-Audio (TV2A)   | `"video_path.mp4"` | `"Ocean waves crashing with people laughing"` | `None`       |
-| TV-to-Music (TV2M)   | `"video_path.mp4"` | `"Generate music with piano instrument"`      | `None`       |
-
-### 🖥️ Script Inference
-
-```python
-import torch
-import torchaudio
-from einops import rearrange
-from stable_audio_tools import get_pretrained_model
-from stable_audio_tools.inference.generation import generate_diffusion_cond
-from stable_audio_tools.data.utils import read_video, merge_video_audio
-from stable_audio_tools.data.utils import load_and_process_audio
-import os
-
-device = "cuda" if torch.cuda.is_available() else "cpu"
-
-# Download model
-model, model_config = get_pretrained_model("HKUSTAudio/AudioX")
-sample_rate = model_config["sample_rate"]
-sample_size = model_config["sample_size"]
-target_fps = model_config["video_fps"]
-seconds_start = 0
-seconds_total = 10
-
-model = model.to(device)
-
-# for video-to-music generation
-video_path = "example/V2M_sample-1.mp4"
-text_prompt = "Generate music for the video" 
-audio_path = None
-
-video_tensor = read_video(video_path, seek_time=0, duration=seconds_total, target_fps=target_fps)
-audio_tensor = load_and_process_audio(audio_path, sample_rate, seconds_start, seconds_total)
-
-conditioning = [{
-    "video_prompt": [video_tensor.unsqueeze(0)],        
-    "text_prompt": text_prompt,
-    "audio_prompt": audio_tensor.unsqueeze(0),
-    "seconds_start": seconds_start,
-    "seconds_total": seconds_total
-}]
-    
-# Generate stereo audio
-output = generate_diffusion_cond(
-    model,
-    steps=250,
-    cfg_scale=7,
-    conditioning=conditioning,
-    sample_size=sample_size,
-    sigma_min=0.3,
-    sigma_max=500,
-    sampler_type="dpmpp-3m-sde",
-    device=device
-)
-
-# Rearrange audio batch to a single sequence
-output = rearrange(output, "b d n -> d (b n)")
-
-# Peak normalize, clip, convert to int16, and save to file
-output = output.to(torch.float32).div(torch.max(torch.abs(output))).clamp(-1, 1).mul(32767).to(torch.int16).cpu()
-torchaudio.save("output.wav", output, sample_rate)
-
-if video_path is not None and os.path.exists(video_path):
-    merge_video_audio(video_path, "output.wav", "output.mp4", 0, seconds_total)
-
-```
-
-
-## 🚀 Citation
-
-If you find our work useful, please consider citing:
-
-```
-@article{tian2025audiox,
-  title={AudioX: Diffusion Transformer for Anything-to-Audio Generation},
-  author={Tian, Zeyue and Jin, Yizhu and Liu, Zhaoyang and Yuan, Ruibin and Tan, Xu and Chen, Qifeng and Xue, Wei and Guo, Yike},
-  journal={arXiv preprint arXiv:2503.10522},
-  year={2025}
-}
-```
-
-## 📭 Contact
-
-If you have any comments or questions, feel free to contact Zeyue Tian(ztianad@connect.ust.hk).
+## 项目链接
+https://github.com/ZeyueT/AudioX
 
 ## License
 
